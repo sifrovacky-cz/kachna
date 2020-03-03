@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<head>
+    <title>CryptoDuck</title>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="{%url 'index'%}">Main page</a></li>
+            <li><a href="{%url 'user:registration'%}">Registration page</a></li>
+            <li><a href="{%url 'user:login'%}">Login page</a></li>
+            <li><a href="{%url 'quack_forum:forum'%}">Forum page</a></li>
+            <li><a href="{%url 'admin:index'%}">Admin page</a></li>
+        </ul>
+    </nav>
+    <div>
+        {% block body_block %}
+        {% endblock %}
+    </div>
+</body>
