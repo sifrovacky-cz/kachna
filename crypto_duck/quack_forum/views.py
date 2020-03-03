@@ -12,8 +12,10 @@ def comment(request):
 
     if request.method == "POST":
         form = CommentForm(request.POST)
+        
         if form.is_valid():
             form.save(commit=True)
+        form = CommentForm()
 
     # Ordering comments from oldest to newest
     comment_list = QuackForum.objects.order_by('date_time')

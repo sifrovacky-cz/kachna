@@ -1,9 +1,8 @@
-<!DOCTYPE html>
+{% extends "base.html" %}
 
-<head>
+{% block body_block %}
 
-</head>
-<body>
+<div>
     <h3>Welcome to Quackforum!</h3>
     <div class = "form">
         <p>Post your quack here!</p>
@@ -34,4 +33,6 @@
         {% endif %}
         
     </div>
-</body>
+</div>
+
+{% endblock %}

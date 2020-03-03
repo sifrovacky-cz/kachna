@@ -5,4 +5,4 @@ from quack_forum.models import QuackForum
 class CommentForm(forms.ModelForm):
     class Meta:
         model = QuackForum
-        fields = ['user','comment']
+        fields = ('user','comment')
