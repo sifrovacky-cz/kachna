@@ -24,5 +24,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('user/',include('user.urls')),
     path('quackforum/',include('quack_forum.urls')),
+    path('logout/',views.user_logout, name = 'user_logout'),
     #path('',views.comment,name='home'),
 ]

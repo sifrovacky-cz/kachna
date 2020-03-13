@@ -6,13 +6,25 @@
     <nav>
         <ul>
             <li><a href="{%url 'index'%}">Main page</a></li>
-            <li><a href="{%url 'user:registration'%}">Registration page</a></li>
-            <li><a href="{%url 'user:login'%}">Login page</a></li>
-            <li><a href="{%url 'quack_forum:forum'%}">Forum page</a></li>
+            <li><a href="{%url 'user:registration'%}">Registration</a></li>
+            
+            {% if user.is_authenticated %}
+            <li><a href="{%url 'quack_forum:forum'%}">Forum</a></li>
+            <li><a href="{%url 'user_logout'%}">Logout</a></li>            
+            {% else %}
+            <li><a href="{%url 'user:user_login'%}">Login</a></li>
+            {% endif %}
+
             <li><a href="{%url 'admin:index'%}">Admin page</a></li>
         </ul>
     </nav>
+    {% if user.is_authenticated %}
     <div>
+        <p>You are currently loged in as: {{user.username}}</p>
+    </div>
+    {% endif %}
+    <div>
+        
         {% block body_block %}
         {% endblock %}
     </div>
