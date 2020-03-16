@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block body_block %}
+
+<div>
+    <h3>Welcome to Quackforum!</h3>
+    <div class = "form">
+        <p>Post your quack here!</p>
+        <form method="POST">
+            <label for="username">User name:</label>
+            <input type="text" name = "username">
+            {{ form.as_p }}
+            {% csrf_token %}
+            <input type="submit" name="Quack!">
+        </form>
+    </div>
+    <br><br>
+    <div class = "comments">
+        <p>Recent quacks:</p>
+        {% if comment_list %}
+        <ul>
+            {% for comment in comment_list %}
+            <li>
+                <ul>                
+                    <li> Date: {{ comment.date_time }} </li>
+                    <li> User: {{ comment.user }} </li>
+                    <li> Comment: {{ comment.comment }} </li>
+                </ul>
+            </li>
+            <br>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <p>NO QUACKS</p>
+        {% endif %}
+        
+    </div>
+</div>
+
+{% endblock %}
