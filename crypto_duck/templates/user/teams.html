@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block body_block %}
+
+<div>
+    <h3>Teams:</h3>
+    {% if teams %}
+
+        {% for team in teams %}
+        <p>{{team.username}}</p>
+        <br>
+        {% endfor %}
+
+    {% else %}
+    <p> No team registered... yet!</p>
+    {% endif %}
+
+</div>
+
+{% endblock %}

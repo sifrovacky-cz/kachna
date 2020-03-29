@@ -16,14 +16,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include,path
 #from quack_forum import views
-from user import views
+#from user import views
 
 
 urlpatterns = [
-    path('',views.index, name = 'index'),
+    path('',include('index_app.urls')),
     path('admin/', admin.site.urls),
     path('user/',include('user.urls')),
     path('quackforum/',include('quack_forum.urls')),
-    path('logout/',views.user_logout, name = 'user_logout'),
+    
     #path('',views.comment,name='home'),
 ]

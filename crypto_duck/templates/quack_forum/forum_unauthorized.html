@@ -11,8 +11,11 @@
             <input type="text" name = "username">
             {{ form.as_p }}
             {% csrf_token %}
+            <label for="check">Please write kachna19 here:</label>
+            <input type="text" name = "check">
             <input type="submit" name="Quack!">
         </form>
+        <p>{{ error_flag }}</p>
     </div>
     <br><br>
     <div class = "comments">

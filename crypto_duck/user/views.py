@@ -4,12 +4,15 @@ from django.urls import reverse
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 
 # Create your views here.
 
-def index(request):
-    return render(request,'index.html')
+def teams(request):
+    teams = User.objects.all()
+    return render(request,'user/teams.html',{'teams':teams})
 
+# User registration
 def registration(request):
     
     user_registered = False
@@ -41,7 +44,6 @@ def registration(request):
 
 def user_login(request):
     
-    
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -52,7 +54,7 @@ def user_login(request):
         if user:
             if user.is_active:
                 login(request, user)
-                return HttpResponseRedirect(reverse('index'))
+                return HttpResponseRedirect(reverse('index_app:index'))
             
             else:
                 return HttpResponse("Account not active!")
@@ -66,4 +68,4 @@ def user_login(request):
 @login_required
 def user_logout(request):
     logout(request)
-    return HttpResponseRedirect(reverse('index'))
+    return HttpResponseRedirect(reverse('index_app:index'))

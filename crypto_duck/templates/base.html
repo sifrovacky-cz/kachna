@@ -5,12 +5,19 @@
 <body>
     <nav>
         <ul>
-            <li><a href="{%url 'index'%}">Main page</a></li>
-            
+            <li><a href="{%url 'index_app:index'%}">Main page</a></li>
+
+            <li><a href="{%url 'index_app:actualities'%}">Actualities</a></li>
+            <li><a href="{%url 'index_app:info'%}">Information</a></li>
+            <li><a href="{%url 'index_app:results'%}">Results</a></li>
+            <li><a href="{%url 'index_app:rules'%}">Rules</a></li>
+
             <li><a href="{%url 'quack_forum:forum'%}">Forum</a></li>
+
+            <li><a href="{%url 'user:teams'%}">Teams</a></li>
             
             {% if user.is_authenticated %}
-            <li><a href="{%url 'user_logout'%}">Logout</a></li>            
+            <li><a href="{%url 'user:user_logout'%}">Logout</a></li>            
             {% else %}
             <li><a href="{%url 'user:registration'%}">Registration</a></li>
             <li><a href="{%url 'user:user_login'%}">Login</a></li>

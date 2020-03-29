@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'quack_forum',
     'user',
+    'index_app',
     
 ]
 
