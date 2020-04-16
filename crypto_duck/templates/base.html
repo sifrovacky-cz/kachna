@@ -11,12 +11,12 @@
             <li><a href="{%url 'index_app:info'%}">Information</a></li>
             <li><a href="{%url 'index_app:results'%}">Results</a></li>
             <li><a href="{%url 'index_app:rules'%}">Rules</a></li>
-
             <li><a href="{%url 'quack_forum:forum'%}">Forum</a></li>
-
             <li><a href="{%url 'user:teams'%}">Teams</a></li>
+            <li><a href="{%url 'quack_forum:crypto_forum'%}">Ciphers</a></li>
             
             {% if user.is_authenticated %}
+            <li><a href="{%url 'quack_forum:crypto_quack'%}">Register cipher</a></li>
             <li><a href="{%url 'user:user_logout'%}">Logout</a></li>            
             {% else %}
             <li><a href="{%url 'user:registration'%}">Registration</a></li>
