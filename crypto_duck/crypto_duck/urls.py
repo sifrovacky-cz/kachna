@@ -15,13 +15,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include,path
-from quack_forum import views
+#from quack_forum import views
+#from user import views
 
-
-# url leads right to comment page, change this when main page is ready
 
 urlpatterns = [
+    path('',include('index_app.urls')),
     path('admin/', admin.site.urls),
-    #path('quackforum/',include('quack_forum.urls')),
-    path('',views.comment,name='home'),
+    path('user/',include('user.urls')),
+    path('quackforum/',include('quack_forum.urls')),
+    
+    #path('',views.comment,name='home'),
 ]

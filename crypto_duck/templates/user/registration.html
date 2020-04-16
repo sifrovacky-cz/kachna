@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block body_block %}
+
+<div>
+    <h3>Registration</h3>
+    <p>{{error_flag}}</p>
+    <br>
+    {% if user_registered %}
+        <br><h4>Your registration was submitted!</h4><br>
+    {% else %}
+
+        <h4>Please fill out this form:</h4>
+
+        <form method="POST">
+            {{ user_form.as_p }}
+            {% csrf_token %}
+
+            <input type="submit" value="Submit!">
+
+        </form>
+
+    {% endif %}
+</div>
+
+{% endblock %}

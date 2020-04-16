@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block body_block %}
+
+<div>
+    <div>
+        <h3>Please login:</h3>
+        <form action = "{% url 'user:user_login' %}" method = "POST">
+            {% csrf_token %}
+            <label for="username">User name:</label>
+            <input type="text" name = "username"> 
+            <label for="password">Password:</label>
+            <input type="password" name = "password">
+
+            <input type="submit" value="Login!">
+
+            
+        </form>
+    </div>
+    
+    
+    
+    
+    
+    <h4><a href="{%url 'user:registration'%}">Register here!</a></h4>
+</div>
+
+{% endblock %}

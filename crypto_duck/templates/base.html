@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<head>
+    <title>CryptoDuck</title>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="{%url 'index_app:index'%}">Main page</a></li>
+
+            <li><a href="{%url 'index_app:actualities'%}">Actualities</a></li>
+            <li><a href="{%url 'index_app:info'%}">Information</a></li>
+            <li><a href="{%url 'index_app:results'%}">Results</a></li>
+            <li><a href="{%url 'index_app:rules'%}">Rules</a></li>
+
+            <li><a href="{%url 'quack_forum:forum'%}">Forum</a></li>
+
+            <li><a href="{%url 'user:teams'%}">Teams</a></li>
+            
+            {% if user.is_authenticated %}
+            <li><a href="{%url 'user:user_logout'%}">Logout</a></li>            
+            {% else %}
+            <li><a href="{%url 'user:registration'%}">Registration</a></li>
+            <li><a href="{%url 'user:user_login'%}">Login</a></li>
+            {% endif %}
+
+            <li><a href="{%url 'admin:index'%}">Admin page</a></li>
+        </ul>
+    </nav>
+    {% if user.is_authenticated %}
+    <div>
+        <p>You are currently loged in as: {{user.username}}</p>
+    </div>
+    {% endif %}
+    <div>
+        
+        {% block body_block %}
+        {% endblock %}
+    </div>
+</body>
