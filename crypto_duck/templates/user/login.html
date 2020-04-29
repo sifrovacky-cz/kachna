@@ -3,26 +3,22 @@
 {% block body_block %}
 
 <div>
-    <div>
-        <h3>Please login:</h3>
+    <h1>Přihlášení</h1>
+    {% if 1 %}
+        <p>Přihlásit se půjde až po registraci</p>
+    {% else %}
         <form action = "{% url 'user:user_login' %}" method = "POST">
             {% csrf_token %}
-            <label for="username">User name:</label>
-            <input type="text" name = "username"> 
-            <label for="password">Password:</label>
-            <input type="password" name = "password">
+            <label for="username">Jméno týmu:</label>
+            <input type="text" name="username" id="username">
+            <label for="password">Heslo:</label>
+            <input type="password" name="password" id="password">
 
-            <input type="submit" value="Login!">
+            <input type="submit" value="Přihlásit se">
 
-            
+
         </form>
-    </div>
-    
-    
-    
-    
-    
-    <h4><a href="{%url 'user:registration'%}">Register here!</a></h4>
+    {%  endif %}
 </div>
 
 {% endblock %}

@@ -3,16 +3,20 @@
 {% block body_block %}
 
 <div>
-    <h3>Teams:</h3>
+    <h1>Registrované týmy:</h1>
     {% if context_teams %}
 
         {% for team in context_teams %}
-        <p>{{team.username}}</p>
-        <br>
+    <div class="team">
+        <div class="team-name">{{forloop.counter}}. {{team.user.username}}</div>
+        <div class="team-members">
+            {{team.participant_one}}{% if team.participant_two %}, {{team.participant_two}}{% endif %}{% if team.participant_three %}, {{team.participant_three}}{% endif %}{% if team.participant_four %}, {{team.participant_four}} {% endif %}
+        </div>
+    </div>
         {% endfor %}
 
     {% else %}
-    <p> No team registered... yet!</p>
+    <p>Ještě se nikdo neregistroval...</p>
     {% endif %}
 
 </div>

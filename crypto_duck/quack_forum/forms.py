@@ -8,6 +8,9 @@ class CommentForm(forms.ModelForm):
         model = QuackForum
         #exclude = ('user',)
         fields = ('comment',)
+        labels = {
+            'comment': 'Kvák'
+        }
 
 class CryptoForm(forms.ModelForm):
     publish_time = forms.DateField(input_formats=['%d.%m.%Y','%d. %m. %Y',])

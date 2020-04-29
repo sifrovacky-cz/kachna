@@ -1,42 +1,31 @@
 {% extends "base.html" %}
-
 {% block body_block %}
-
 <div>
-    <h3>Welcome to Quackforum!</h3>
-    <div class = "form">
-        <p>Post your quack here!</p>
-        <form method="POST">
-            <label for="username">User name:</label>
-            <input type="text" name = "username">
-            {{ form.as_p }}
-            {% csrf_token %}
-            <label for="check">Please write kachna19 here:</label>
-            <input type="text" name = "check">
-            <input type="submit" name="Quack!">
-        </form>
+    <h1>Kváky</h1>
+    {% if error_flag %}
         <p>{{ error_flag }}</p>
-    </div>
-    <br><br>
-    <div class = "comments">
-        <p>Recent quacks:</p>
+    {% endif %}
+    <div class="comments">
         {% if comment_list %}
-        <ul>
             {% for comment in comment_list %}
-            <li>
-                <ul>                
-                    <li> Date: {{ comment.date_time }} </li>
-                    <li> User: {{ comment.user }} </li>
-                    <li> Comment: {{ comment.comment }} </li>
-                </ul>
-            </li>
-            <br>
+                <div class="quack">
+                    <div class="quack-user">{{ comment.user }}</div>
+                    <div class="quack-date">{{ comment.date_time }}</div>
+                    <div class="quack-content">{{ comment.comment }}</div>
+                </div>
             {% endfor %}
-        </ul>
-        {% else %}
-        <p>NO QUACKS</p>
         {% endif %}
-        
+    </div>
+    <div class = "form">
+        <form method="POST">
+            <label for="username">Jméno</label>
+            <input type="text" name="username" id="username">
+            {{ form }}
+            {% csrf_token %}
+            <label for="check">Který tým vyhrál Kachnu loni?:</label>
+            <input type="text" name ="check" id="check">
+            <input type="submit" value="Odeslat">
+        </form>
     </div>
 </div>
 

@@ -35,7 +35,7 @@ def Comment(request):
     # this is the part when user is not loged in
     else:
         
-        check_password = "kachna19"
+        check_password = "TBD"
         html_path = 'quack_forum/forum_unauthorized.html'
         
         form = CommentForm()

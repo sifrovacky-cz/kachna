@@ -5,27 +5,28 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from .models import UserProfile
 
 # Create your views here.
 
 def teams(request):
-    teams = User.objects.all()
+    teams = UserProfile.objects.all()
     context_teams = []
     for team in teams:
-        if not team.is_superuser:
+        if not team.user.is_superuser:
             context_teams.append(team)
     return render(request,'user/teams.html',{'context_teams':context_teams})
 
 # User registration
 def registration(request):
-    
+
     user_registered = False
     error_flag = ''
 
     if request.method == 'POST':
         user_form = UserProfileForm(data=request.POST)
         participants_form = UserParticipantsForm(data=request.POST)
-        
+
         #profile validation
         if user_form.is_valid():
 
@@ -42,7 +43,7 @@ def registration(request):
 
         else:
             error_flag = 'Error occured during validation!'
-    
+
     else:
         user_form = UserProfileForm()
         participants_form = UserParticipantsForm()
@@ -56,11 +57,11 @@ def registration(request):
 # User login
 
 def user_login(request):
-    
+
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
-        
+
         #authentication
         user = authenticate(username=username, password = password)
 
@@ -68,7 +69,7 @@ def user_login(request):
             if user.is_active:
                 login(request, user)
                 return HttpResponseRedirect(reverse('index_app:index'))
-            
+
             else:
                 return HttpResponse("Account not active!")
         else:
