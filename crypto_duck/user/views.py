@@ -29,20 +29,23 @@ def registration(request):
 
         #profile validation
         if user_form.is_valid():
+            if user_form.cleaned_data['password'] == user_form.cleaned_data['password_check']:
+                user = user_form.save()
+                user.set_password(user.password)
+                user.save()
 
-            user = user_form.save()
-            user.set_password(user.password)
-            user.save()
+                participants = participants_form.save(commit = False)
+                participants.user = user
 
-            participants = participants_form.save(commit = False)
-            participants.user = user
+                participants.save()
 
-            participants.save()
-
-            user_registered = True
+                user_registered = True
+                login(request, user)
+            else:
+                error_flag = 'Hesla se neshodují!'
 
         else:
-            error_flag = 'Error occured during validation!'
+            error_flag = 'Nastal problém během validace!'
 
     else:
         user_form = UserProfileForm()
@@ -57,7 +60,7 @@ def registration(request):
 # User login
 
 def user_login(request):
-
+    error_flag = ''
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -71,11 +74,11 @@ def user_login(request):
                 return HttpResponseRedirect(reverse('index_app:index'))
 
             else:
-                return HttpResponse("Account not active!")
+                error_flag = 'Účet není aktivní!'
         else:
-            return HttpResponse("Invalid login!")
+            error_flag = 'Přihlašovací údaje nejsou v pořádku!'
 
-    return render(request,"user/login.html")
+    return render(request,"user/login.html",{'error_flag': error_flag})
 
 
 #only user who is loged in can log out!

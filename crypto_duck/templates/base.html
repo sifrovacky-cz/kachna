@@ -39,11 +39,6 @@
             <li><a href="{%url 'user:teams'%}">Týmy</a></li>
         </ul>
     </nav>
-    {% if user.is_authenticated %}
-    <div>
-        <p>You are currently loged in as: {{user.username}}</p>
-    </div>
-    {% endif %}
     <main>
         <div>
             {% block body_block %}

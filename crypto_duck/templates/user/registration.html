@@ -4,17 +4,20 @@
 
 <div>
     <h1>Registrace</h1>
-    {% if 1 %}
+    {% if 0 %}
         <p>Registraci spustíme 18. května.</p>
     {% else %}
         {% if error_flag %}
             <p>{{error_flag}}</p>
         {% endif %}
         {% if user_registered %}
-            <h4>Your registration was submitted!</h4><br>
+            <h4>Vaše registrace byla úspěšná!</h4><br>
         {% else %}
             <form method="POST">
-                {{ user_form }}
+                {% for field in user_form %}
+                    {{ field.label_tag }}
+                    {{ field }}
+                {% endfor %}
                 {{ participants_form }}
                 {% csrf_token %}
                 <input type="submit" value="Registrovat">

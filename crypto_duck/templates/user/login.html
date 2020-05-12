@@ -4,9 +4,13 @@
 
 <div>
     <h1>Přihlášení</h1>
-    {% if 1 %}
+    {% if 0 %}
         <p>Přihlásit se půjde až po registraci</p>
     {% else %}
+
+        <br>
+        <h3>{{error_flag}}</h3>
+        <br>
         <form action = "{% url 'user:user_login' %}" method = "POST">
             {% csrf_token %}
             <label for="username">Jméno týmu:</label>
