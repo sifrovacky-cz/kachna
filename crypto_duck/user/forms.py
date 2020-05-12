@@ -3,19 +3,22 @@ from django.contrib.auth.models import User
 from .models import UserProfile
 
 class UserProfileForm (forms.ModelForm):
-    password = forms.CharField(widget=forms.PasswordInput())
+    password = forms.CharField(widget=forms.PasswordInput(), label = 'Heslo')
+    email = forms.EmailField(required = True)
+    password_check = forms.CharField(widget = forms.PasswordInput(), label = 'Heslo znovu')
 
     class Meta():
         model = User
-        fields = ('username','email','password')
+        fields = ('username','email','password','password_check')
         help_texts = {
                     'username': None,
                 }
         labels = {
             'username': 'Jméno týmu',
             'email': 'Email',
-            'password': 'Heslo'
+            #password and password_check were not working, labels were moved up
         }
+
 
 class UserParticipantsForm(forms.ModelForm):
     class Meta():

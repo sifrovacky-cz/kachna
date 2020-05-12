@@ -44,11 +44,14 @@ def Comment(request):
             form = CommentForm(request.POST)
             
             if form.is_valid() and request.POST.get('check') == check_password:
-                form_with_user = form.save(commit=False)
-                form_with_user.user = request.POST.get('username')
-                form_with_user.save()
+                if request.POST.get('username'):
+                    form_with_user = form.save(commit=False)
+                    form_with_user.user = request.POST.get('username')
+                    form_with_user.save()
+                else:
+                    error_flag = "Napište prosím přezdívku, pod kterou chcete příspěvek přidat!"
             else:
-                error_flag = "Please write " + check_password + " into the box above!"
+                error_flag = "Napište prosím" + check_password + " do příslušného políčka!"
             form = CommentForm()
 
     # Ordering comments from oldest to newest
