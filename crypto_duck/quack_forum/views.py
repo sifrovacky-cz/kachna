@@ -1,14 +1,20 @@
-from django.shortcuts import render
-#from django.contrib.auth.decorators import login_required
-# importing comment form from .forms
+from django.shortcuts import render, get_object_or_404
+from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseRedirect, HttpResponse
+from django.urls import reverse
+import datetime
+
+#form and model of normal comment
 from quack_forum.forms import CommentForm
 from quack_forum.models import QuackForum
 
-# Create your views here.
+#form and model of crypto comment
+from quack_forum.forms import CryptoForm
+from quack_forum.models import CryptoQuack
 
 # saves comment and returns comment models from database
 
-def comment(request):
+def Comment(request):
     #error (for unregistred user, if they do the check wrong)    
     error_flag = ''
 
@@ -29,7 +35,7 @@ def comment(request):
     # this is the part when user is not loged in
     else:
         
-        check_password = "kachna19"
+        check_password = "TBD"
         html_path = 'quack_forum/forum_unauthorized.html'
         
         form = CommentForm()
@@ -50,3 +56,43 @@ def comment(request):
 
 
     return render(request,html_path,{'form':form,'comment_list':comment_list,'error_flag':error_flag})
+
+
+@login_required
+def CryptoComment(request):
+
+    form = CryptoForm()
+
+    if request.method == 'POST':
+        form = CryptoForm(request.POST,request.FILES)
+
+        if form.is_valid():
+            form = form.save(commit = False)
+            form.author = request.user
+            form.save()
+            return HttpResponseRedirect(reverse('quack_forum:crypto_forum'))
+
+    return render(request,'quack_forum/crypto_comment_form.html',{'form':form,})
+
+
+def CryptoForum(request):
+
+    today =  datetime.date.today()
+    error_flag = ""
+
+    if request.method == 'POST':
+        try:
+            id_value = request.POST.get('id_value')
+            CryptoQuack.objects.filter(id=id_value).delete()
+        except:
+            error_flag = "An error has occured :("
+
+    cryptoCommentList = CryptoQuack.objects.order_by('-publish_time')
+
+
+    return render(request,'quack_forum/ciphers.html',{'cryptoComentList':cryptoCommentList,'today':today,'error_flag':error_flag})
+
+
+
+
+

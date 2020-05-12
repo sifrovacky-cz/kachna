@@ -1,7 +1,232 @@
 {% extends "base.html" %}
 {% block body_block %}
 <div>
-    <h3>Rules:</h3>
-    
+    <div id="content">
+        <h1>Pravidla</h1>
+        <h2>Struktura hry</h2>
+        <div>
+            <p>
+                Kachna je určena pro maximálně čtyřčlenné týmy. Začíná v sobotu v 8.30 po snídani přímo v areálu
+                ubytování a končí ten samý den v 18.30 opět v areálu. Hra trvá 10 hodin a je navržena pro právě 24 týmů.
+            </p>
+            <p>
+                Hra se skládá ze stanovišť se šiframi hráčů (viz odstavec Vlastní šifry) a případně organizátorů. Na každém
+                stanovišti se nachází 2 různé šifry odkazující na dvě různá místa. LIBOVOLNÁ dvě stanoviště od sebe
+                nejsou vzdálena více než 1600 metrů (většinou jsou však výrazně blíže).
+            </p>
+        </div>
+
+        <h2>Vybavení do hry</h2>
+        <h3>Tradiční vybavení</h3>
+        <div>
+            <p>
+                Z tradičního vybavení se Vám jistě budou hodit všechny standardní šifrovací pomůcky (tužky, papíry,
+                fólie, fixy, nůžky), jídlo a pití na přežití celé šifrovačky, kachna doporučuje také buzolu a repelent.
+                Pokud bude pro nějakou konkrétní šifru potřebné speciální vybavení, bude upřesněno v posledních
+                informacích před hrou.
+            </p>
+        </div>
+        <h3>Mapa</h3>
+        <div>
+            <p>
+                Každý tým dostane na začátku hry velmi podrobnou mapu pro orientační běh (ta se od normálních map
+                odlišuje svou vysokou podrobností a některými nezvyklými barvami - například vzrostlý les je značen
+                bílou barvou, hustší porosty pak různými odstíny zelené). Pokud jste se s takovou mapou nikdy nesetkali,
+                doporučujeme podívat se třeba na tento <a href="http://verejnost.oobtrebic.cz/mapa.html">přehled</a>.
+            </p>
+        </div>
+
+        <h3>Karta týmu</h3>
+        <div>
+            <p>
+                Karta týmu, kterou obdrží každý tým na startu, slouží pro záznam hry a následné vyhodnocení výsledků.
+            </p>
+        </div>
+        <h2>Body</h2>
+        <div>
+            <p>
+                Cílem šifrovačky Kachna je získat co nejvíce bodů. Body se týmu udělují ve čtyřech kategoriích:
+            </p>
+        </div>
+        <h3>Navštívená stanoviště</h3>
+        <div>
+            <p>
+                Počet navštívených stanovišť krát 3. Maximálně tedy 3 * (12) = 36 bodů.
+            </p>
+        </div>
+        <h3>Vyluštěné šifry</h3>
+        <div>
+            <p>
+                Počet vyluštěných šifer krát 2. Maximálně tedy 2 * (24) = 48 bodů.
+            </p>
+        </div>
+        <h3>Krása vaší šifry</h3>
+        <div>
+            <p>
+                Průměr (ve skutečnosti průměr mediánu a dvou sousedních hodnot) z hodnocení ostatních týmů, které šifru
+                vyluštily, krát 8. Maximálně tedy 6 * 8 = 48 bodů. V cíli budou navíc hodnocení všech týmů autorsky
+                harmonizována a to tak, aby se nikomu nevyplatilo „škodit“ ostatním tak, že všechny šifry bude hodnotit
+                jedním bodem.
+            </p>
+        </div>
+        <h3>Obtížnost Vaší šifry</h3>
+        <div>
+            <p>
+                Poměr počtu týmů, které šifru vyluštily, a počtu týmů, které šifru luštily (viz údaj v Kartě hry)
+                prohnaný kachním vzorcem. Maximálně 40 bodů. Orientační hodnoty v tabulce:
+            </p>
+            <div>
+                <table>
+                    <thead>
+                    <tr>
+                        <th> % týmů vyluštilo </th><th> bodů </th>
+                    </tr>
+                    </thead>
+                    <tbody><tr>
+                        <td> 5% </td><td>	0 </td>
+                    </tr>
+                    <tr>
+                        <td> 20% </td><td>	0 </td>
+                    </tr>
+                    <tr>
+                        <td> 30% </td><td>	10 </td>
+                    </tr>
+                    <tr>
+                        <td> 40% </td><td>	20 </td>
+                    </tr>
+                    <tr>
+                        <td> 50% </td><td>	30 </td>
+                    </tr>
+                    <tr>
+                        <td> 60% </td><td>	35 </td>
+                    </tr>
+                    <tr>
+                        <td> 70% </td><td>	40 </td>
+                    </tr>
+                    <tr>
+                        <td> 80% </td><td>	40 </td>
+                    </tr>
+                    <tr>
+                        <td> 90% </td><td>	35 </td>
+                    </tr>
+                    <tr>
+                        <td> 100% </td><td>  30 </td>
+                    </tr>
+                    </tbody></table></div>
+                </table>
+            </div>
+        </div>
+
+        <h2>Start</h2>
+        <div>
+
+            <p>
+                Kachnu tradičně zahájí netradiční startovní aktivita, během níž získáte rejstřík mapující hesla na
+                stanoviště. Podrobnosti upřesníme v pátek při zahájení.
+            </p>
+
+        </div>
+
+        <h2>Stanoviště, trasa</h2>
+        <div>
+
+            <p>
+                Na mapě bude vyznačena souřadnicová mřížka. Z druhé strany mapy bude přiložen „překladový slovník“
+                (rejstřík), který bude párovat souřadnice (s upřesněním s klíčovými slovy). Jakmile tedy z šifry
+                vyluštíte tajenku, podíváte se do „slovníku“ a zjistíte, se kterým bodem se pojí – tam můžete vyrazit.
+                Např. vyluštíte slovo REJNOK, ten je ve slovníku párován se souřednicí J8 (posed). Ve čtverci J8 je
+                jediný posed, kde se nachází další stanoviště.
+            </p>
+
+            <p>
+                Stanoviště se budou vesměs nacházet mimo cesty. Jsou označena fáborkem a vždy se nachází u nějakého
+                výrazného objektu – posed, krmelec, skála, roh plotu. Prostor hry není velký, jedná se převážně o příjemný
+                les. Samotné šifry jsou ve vodovzdorném obalu, každý tým si smí vzít dvě
+                kopie.
+            </p>
+
+        </div>
+
+        <h2>Stanoviště vševěd</h2>
+        <div>
+
+            <p>
+                Na stanovišti s označením „VŠEVĚD“ prozradí organizátoři za splnění úkolu řešení libovolné vyzvednuté
+                šifry. Tato šifra se pak hodnotí jako nevyluštěná (= za vyluštění nejsou body a nelze hodnotit krásu).
+                Možných úkolů je celkem 5.
+            </p>
+
+        </div>
+
+        <h2>Cíl</h2>
+        <div>
+
+            <p>
+                Nejpozději do 18.30 musí týmy do cíle libovolným způsobem (v souladu s pravidly) dopravit Kartu týmu.
+                Organizátoři poté v rychlosti vyhodnotí výsledky, následuje večeře, prohlídka všech šifer, vyhlášení
+                výsledků Kachny a kachní večírek – oheň, hudba a drobné chuťovky k opečení.
+            </p>
+
+        </div>
+
+        <h2>Další pravidla</h2>
+        <div>
+            <p>
+                Protože Kachna nemá být o luštění ve dvojicích či jednotlivcích, platí tato pravidla:
+            </p>
+            <ul>
+                <li> Zákaz rozdělení týmu!
+        </li>
+        <li> Standardní pravidla šifrovacích her – tj. nespolupracovat s ostatními, luštit v rozumné vzdálenosti od
+            stanoviště, nestopovat ostatní týmy, nechodit do lesních školek, na soukromé pozemky, nepoužívat jiné
+            dopravní prostředky než vlastní nohy (popř. bezmotorový kočárek) atd.
+    </li>
+    <li> Vzhledem k tomu, že na mapě je omezený počet tajenek, není možné se zcela vyhnout „haluzení“. Nebráníme se
+        nijak zpětnému inženýrství a odhadování tajenky, ale náhodné obíhání stanovišť je zakázáno. Hrajte fér a hlavně
+        tak, abyste si hru i celý kachní tah užili.
+</li>
+</ul>
+</div>
+
+<h2>Vlastní šifry</h2>
+<div>
+
+    <p>
+        Každý tým musí vytvořit jednu šifru, která bude použita ve hře, a uploadovat ji <strong>do 12. června</strong>
+        na Stránce týmu. Během neděle 14. června tým na Stránce týmu najde dvě šifry jiných týmů
+        k otestování. <strong>Do 3. července</strong> pošle tým zpětnou vazbu autorům šifry, kteří budou mít čas
+        <strong>do 12. července</strong> připomínky zakomponovat a nahrát finální verzi šifry.
+    </p>
+
+    <p>
+        Pokud byste si přáli, aby vám šifru testoval nějaký konkrétní tým (např. jeho člen zná princip, umíte si
+            předat artefakt apod.), uveďte to prosím v sekci Poznámka při nahrávání šifry
+    </p>
+
+    <p>
+        Pokud bude tým chtít šifru otestovat znovu po úpravě, musí si další testery sehnat sám. Pokud má tým
+        artefaktovou šifru, kterou nelze předat jinému týmu k otestování, může zkusit za účelem testu kontaktovat
+        organizátory nebo si testery sehnat sám.
+    </p>
+
+    <p>
+        Požadavky na šifru:
+    </p>
+    <ul>
+        <li> řešením je české podstatné jméno (existující na pravidla.cz) v prvním pádě jednotného čísla</li>
+        <li> šifra je ve formátu PDF rozměru <strong>A4, A5, A6 nebo A7</strong> (usnadníte nám hlavičkování a šetrný
+            tisk)
+</li>
+<li> nahoře má vodorovný bílý pruh o šířce 2 centimetry
+</li>
+<li> v případě, že děláte speciální šifru (předmětová, zvuková apod.), zařizujete si propriety sami
+</li>
+</ul>
+
+</div>
+
+
+</div>
+
 </div>
 {% endblock %}

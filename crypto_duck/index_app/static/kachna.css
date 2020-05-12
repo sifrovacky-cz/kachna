@@ -1,0 +1,338 @@
+
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+body {
+    line-height: 1.3;
+}
+ol, ul {
+    list-style: none;
+}
+blockquote, q {
+    quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+html, body {
+    color: #f7f3f2;
+    background-color: #231419;
+    width: 100%;
+    height: 100%;
+    font-family: sans-serif;
+}
+
+a {
+    color: #ecc15b;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-rows: auto auto 1fr auto;
+    grid-template-areas: "header" "nav" "main" "footer";
+    min-height: 100%;
+}
+
+header {
+    grid-area: header;
+    padding: 0.5em 1em;
+    background-image: url('./kachna-background.svg');
+    background-repeat: no-repeat;
+    background-size : 100%;
+    min-height: 90px;
+    background-position: top;
+}
+
+.header-content {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.login-box {
+    align-self: center;
+    text-align: right;
+}
+
+.login-box a {
+    text-decoration: none;
+}
+
+.kachna-logo {
+    stroke: #f7f3f2;
+    height: 3em;
+}
+
+nav {
+    grid-area: nav;
+    padding: 1em;
+}
+
+nav ul {
+    display: flex;
+    flex-wrap: wrap;
+    list-style-type: none;
+    justify-content: space-between;
+}
+
+nav li {
+    justify-self: center;
+}
+
+nav li a {
+    color: #ecc15b;
+    font-weight: bolder;
+    text-decoration: none;
+}
+
+main {
+    grid-area: main;
+    padding: 0.5em 1em;
+    text-align: justify;
+}
+
+main li {
+    list-style: disc inside;
+    padding-left: 1em;
+}
+
+main table {
+    margin: 1em 0;
+    border: dashed 2px;
+}
+
+main th {
+    padding: 0.5em;
+    border: dashed 1px;
+}
+
+main td {
+    padding: 0.5em;
+    border: dashed 1px;
+}
+
+footer {
+    grid-area: footer;
+    background-color: #A47712;
+    padding: 0.5em 1em;
+    margin-top: 1em;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sova-logo {
+    stroke: #f7f3f2;
+    fill: #f7f3f2;
+    height: 3em;
+    width: 30%;
+}
+
+.footer-credits {
+  font-size: 80%;
+}
+
+.team {
+    padding: 0.5em 0;
+}
+
+.team-name {
+    font-weight: bolder;
+}
+
+form {
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+    row-gap: 1em;
+    column-gap: 0.5em;
+    align-items: center;
+}
+
+input {
+    background-color: #f7f3f2;
+    border-radius: 2px;
+    border-color: #f7f3f2;
+    font-size: 1.1em;
+}
+
+textarea {
+    background-color: #f7f3f2;
+    border-radius: 2px;
+    border-color: #f7f3f2;
+}
+
+textarea:focus {
+    outline-color: #ecc15b;
+}
+
+input:focus {
+    outline-color: #ecc15b;
+}
+
+input[type=submit] {
+    color: #ecc15b;
+    text-decoration: underline;
+    background: #231419;
+    border: none;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    font-size: 100%;
+    margin-top: 1em;
+}
+
+.quack {
+    display: flex;
+    border: 1px #ecc15b dashed;
+    padding: 0.5em ;
+    margin: 1em 0;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.quack-user {
+    font-size: 90%;
+}
+
+.quack-date {
+    font-size: 90%;
+}
+
+.quack-content {
+    padding-top: 0.5em;
+    flex-basis: 100%;
+}
+
+@media only screen and (min-width: 768px) {
+    main {
+        max-width: 740px;
+        min-width: 740px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .header-content {
+        max-width: 740px;
+        min-width: 740px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .footer-content {
+        max-width: 740px;
+        min-width: 740px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+
+
+    input {
+        height: 1.5em;
+        font-size: 1.2em;
+    }
+
+    textarea {
+        font-size: 1.2em;
+    }
+
+    label {
+        font-size: 1.2em;
+    }
+
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+    nav {
+        max-width: 740px;
+        min-width: 740px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    header {
+        min-height: 180px;
+    }
+}
+@media only screen and (min-width: 1024px) {
+    .grid-container {
+        display: grid;
+        grid-template-rows: auto 1fr auto;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-areas:
+                "header header header"
+                "nav main ."
+                "footer footer footer";
+        min-height: 100%;
+    }
+
+    nav {
+        justify-self: end;
+        max-width: none;
+    }
+
+    nav ul {
+        flex-direction: column;
+        font-size: 125%;
+        position: fixed;
+        margin-left: -8vw;
+        margin-top: 1em;
+        line-height: 2;
+    }
+
+    nav li a {
+        text-decoration: none;
+    }
+
+    header {
+        background: none;
+    }
+
+
+    .header-content {
+        background-image: url('./kachna-background.svg');
+        background-repeat: no-repeat;
+        background-size: 100%;
+        background-position: top;
+        min-height: 180px;
+    }
+
+    .login-box {
+        align-self: flex-start;
+        line-height: 2em;
+        font-size: 125%;
+        padding-right: 0.2em;
+    }
+}

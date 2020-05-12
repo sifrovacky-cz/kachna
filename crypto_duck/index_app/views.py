@@ -3,10 +3,7 @@ from django.shortcuts import render
 # Create your views here.
 def index(request):
     return render(request,'static/index.html')
-    
-def actualities(request):
-    return render(request,'static/actualities.html')
-    
+
 def info(request):
     return render(request,'static/info.html')
     

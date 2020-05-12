@@ -3,23 +3,23 @@
 {% block body_block %}
 
 <div>
-    <h3>Registration</h3>
-    <p>{{error_flag}}</p>
-    <br>
-    {% if user_registered %}
-        <br><h4>Your registration was submitted!</h4><br>
+    <h1>Registrace</h1>
+    {% if 1 %}
+        <p>Registraci spustíme 18. května.</p>
     {% else %}
-
-        <h4>Please fill out this form:</h4>
-
-        <form method="POST">
-            {{ user_form.as_p }}
-            {% csrf_token %}
-
-            <input type="submit" value="Submit!">
-
-        </form>
-
+        {% if error_flag %}
+            <p>{{error_flag}}</p>
+        {% endif %}
+        {% if user_registered %}
+            <h4>Your registration was submitted!</h4><br>
+        {% else %}
+            <form method="POST">
+                {{ user_form }}
+                {{ participants_form }}
+                {% csrf_token %}
+                <input type="submit" value="Registrovat">
+            </form>
+        {% endif %}
     {% endif %}
 </div>
 

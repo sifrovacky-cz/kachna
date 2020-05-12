@@ -4,6 +4,39 @@
 
 <div>
     <h3>Ciphers:</h3>
+    <br>
+
+    <p>{{ error_flag }}</p>
+        {% if cryptoComentList %}
+        <ul>
+            {% for comment in cryptoComentList %}
+            <li>
+                
+                <ul>                
+                    <li> User: {{ comment.author }} </li>
+                    <li> Cipher: <a href="{{ comment.cipher_unsolved.url }}">{{ comment.tag }}</a></li>
+
+
+                    {% if comment.publish_time < today or comment.author == user %}
+                    <li>Solved: <a href="{{ comment.cipher_solved.url }}"> {{ comment.tag }}</a></li>
+                    {% endif %}
+
+                    {% if comment.author == user %}
+                    <form action = "{% url 'quack_forum:crypto_forum' %}" method = "POST">
+                        {% csrf_token %}
+                        <li><button type = "submit" value = "{{comment.id}}" name = "id_value">Delete!</button></li>
+                    </form>
+                    {% endif %}
+                </ul>
+                
+            </li>
+            <br>
+            {% endfor %}
+            
+        </ul>
+        {% else %}
+        <p>NO CIPHERS</p>
+        {% endif %}
     
 </div>
 
