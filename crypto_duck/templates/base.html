@@ -20,7 +20,7 @@
         <div class="login-box">
             <ul>
             {% if user.is_authenticated %}
-                <li><a href="#">{{user.username}}</a></li>
+                <li><a href="{%url 'user:profile_update'%}">{{user.username}}</a></li>
             <li><a href="{%url 'user:user_logout'%}">Odhlásit</a></li>
             {% else %}
             <li><a href="{%url 'user:registration'%}">Registrovat</a></li>
@@ -37,7 +37,6 @@
             <li><a href="{%url 'index_app:rules'%}">Pravidla</a></li>
             <li><a href="{%url 'quack_forum:forum'%}">Kváky</a></li>
             <li><a href="{%url 'user:teams'%}">Týmy</a></li>
-            <li><a href="{%url 'user:profile_update'%}">Profilovka</a></li>
         </ul>
     </nav>
     <main>
