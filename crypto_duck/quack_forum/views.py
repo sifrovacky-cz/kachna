@@ -95,6 +95,8 @@ def CryptoForum(request):
 
     return render(request,'quack_forum/ciphers.html',{'cryptoComentList':cryptoCommentList,'today':today,'error_flag':error_flag})
 
+# profile page update view
+
 
 
 

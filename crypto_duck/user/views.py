@@ -5,6 +5,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.views.generic.edit import UpdateView
 from .models import UserProfile
 
 # Create your views here.
@@ -86,3 +87,36 @@ def user_login(request):
 def user_logout(request):
     logout(request)
     return HttpResponseRedirect(reverse('index_app:index'))
+
+@login_required
+def update_page(request):
+    error_flag = ''
+    participants_model = UserProfile.objects.get(user = request.user)
+    if request.method == 'POST':
+        user_form = UserProfileForm(data=request.POST, instance=request.user)
+        participants_form = UserParticipantsForm(data=request.POST, instance = participants_model)
+
+        #profile validation
+        if user_form.is_valid():
+            if user_form.cleaned_data['password'] == user_form.cleaned_data['password_check']:
+                user = user_form.save()
+                user.set_password(user.password)
+                user.save()
+
+                participants = participants_form.save(commit = False)
+                participants.user = user
+                participants.save()
+                login(request, user)
+                error_flag = 'Vše proběhlo úspěšně!'
+            else:
+                error_flag = 'Hesla se neshodují!'
+
+        else:
+            error_flag = 'Nastal problém během validace!'
+
+    else:
+        user_form = UserProfileForm(instance=request.user)
+        participants_form = UserParticipantsForm(instance=participants_model)
+    return render(request,'user/profile_update.html',{'user_form': user_form,
+                                                    'participants_form': participants_form,
+                                                    'error_flag': error_flag })

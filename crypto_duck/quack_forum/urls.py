@@ -6,4 +6,5 @@ urlpatterns = [ path('',views.Comment,name = 'forum'),
                 path('cryptoquack',views.CryptoComment,name = 'crypto_quack'),
                 path('ciphers',views.CryptoForum, name = 'crypto_forum'),
                 
+                
 ]

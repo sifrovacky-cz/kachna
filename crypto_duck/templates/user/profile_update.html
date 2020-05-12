@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block body_block %}
+
+<div>
+    <h1>Úprava profilu</h1>
+    {% if 0 %}
+        <p>Registraci spustíme 18. května.</p>
+    {% else %}
+        {% if error_flag %}
+            <p>{{error_flag}}</p>
+        {% endif %}
+
+            <form method="POST">
+                {% for field in user_form %}
+                    {{ field.label_tag }}
+                    {{ field }}
+                {% endfor %}
+                {{ participants_form }}
+                {% csrf_token %}
+                <input type="submit" value="Upravit">
+            </form>
+    {% endif %}
+</div>
+
+{% endblock %}
