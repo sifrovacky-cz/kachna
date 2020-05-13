@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
+from index_app.models import DisplayModel
 import datetime
 
 #form and model of normal comment
@@ -63,7 +64,6 @@ def Comment(request):
 
 @login_required
 def CryptoComment(request):
-
     form = CryptoForm()
 
     if request.method == 'POST':
@@ -75,11 +75,16 @@ def CryptoComment(request):
             form.save()
             return HttpResponseRedirect(reverse('quack_forum:crypto_forum'))
 
-    return render(request,'quack_forum/crypto_comment_form.html',{'form':form,})
+    return render(request,'quack_forum/crypto_comment_form.html',{'form':form,
+                                                                    })
 
 
 def CryptoForum(request):
-
+    #get visibility
+    if DisplayModel.objects.get(pk = 1):
+        visible = DisplayModel.objects.get(pk = 1).date<= datetime.date.today()
+    else:
+        visible = false
     today =  datetime.date.today()
     error_flag = ""
 
@@ -93,9 +98,12 @@ def CryptoForum(request):
     cryptoCommentList = CryptoQuack.objects.order_by('-publish_time')
 
 
-    return render(request,'quack_forum/ciphers.html',{'cryptoComentList':cryptoCommentList,'today':today,'error_flag':error_flag})
+    return render(request,'quack_forum/ciphers_try.html',{'cryptoComentList':cryptoCommentList,
+                                                    'today':today,
+                                                    'error_flag':error_flag,
+                                                    'visible':visible
+                                                    })
 
-# profile page update view
 
 
 

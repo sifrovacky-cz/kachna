@@ -7,6 +7,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.views.generic.edit import UpdateView
 from .models import UserProfile
+from index_app.models import DisplayModel
+import datetime
 
 # Create your views here.
 
@@ -20,7 +22,11 @@ def teams(request):
 
 # User registration
 def registration(request):
-
+    #get visibility
+    if DisplayModel.objects.get(pk = 2):
+        visible = DisplayModel.objects.get(pk = 2).date<= datetime.date.today()
+    else:
+        visible = false
     user_registered = False
     error_flag = ''
 
@@ -55,12 +61,18 @@ def registration(request):
     return render(request,'user/registration.html',{'user_registered':user_registered,
                                                     'error_flag':error_flag,
                                                     'user_form':user_form,
-                                                    'participants_form':participants_form,})
+                                                    'participants_form':participants_form,
+                                                    'visible':visible})
 
 
 # User login
 
 def user_login(request):
+    #get visibility
+    if DisplayModel.objects.get(pk = 2):
+        visible = DisplayModel.objects.get(pk = 2).date<= datetime.date.today()
+    else:
+        visible = false
     error_flag = ''
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -79,7 +91,8 @@ def user_login(request):
         else:
             error_flag = 'Přihlašovací údaje nejsou v pořádku!'
 
-    return render(request,"user/login.html",{'error_flag': error_flag})
+    return render(request,"user/login.html",{'error_flag': error_flag,
+                                            'visible':visible,})
 
 
 #only user who is loged in can log out!
