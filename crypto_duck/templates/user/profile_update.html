@@ -4,9 +4,6 @@
 
 <div>
     <h1>Úprava profilu</h1>
-    {% if 0 %}
-        <p>Registraci spustíme 18. května.</p>
-    {% else %}
         {% if error_flag %}
             <p>{{error_flag}}</p>
         {% endif %}
@@ -20,7 +17,6 @@
                 {% csrf_token %}
                 <input type="submit" value="Upravit">
             </form>
-    {% endif %}
 </div>
 
 {% endblock %}

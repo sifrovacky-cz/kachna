@@ -4,9 +4,8 @@ from django.urls import reverse
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
 from django.views.generic.edit import UpdateView
-from .models import UserProfile
+from .models import UserProfile,MyUser
 from index_app.models import DisplayModel
 import datetime
 
@@ -23,10 +22,10 @@ def teams(request):
 # User registration
 def registration(request):
     #get visibility
-    if DisplayModel.objects.get(pk = 2):
-        visible = DisplayModel.objects.get(pk = 2).date<= datetime.date.today()
+    if DisplayModel.objects.filter(title = "Účty").first():
+        visible = DisplayModel.objects.get(title = "Účty").date<= datetime.date.today()
     else:
-        visible = false
+        visible = True
     user_registered = False
     error_flag = ''
 
@@ -69,10 +68,10 @@ def registration(request):
 
 def user_login(request):
     #get visibility
-    if DisplayModel.objects.get(pk = 2):
-        visible = DisplayModel.objects.get(pk = 2).date<= datetime.date.today()
+    if DisplayModel.objects.filter(title = "Účty").first():
+        visible = DisplayModel.objects.get(title = "Účty").date<= datetime.date.today()
     else:
-        visible = false
+        visible = True
     error_flag = ''
     if request.method == 'POST':
         username = request.POST.get('username')

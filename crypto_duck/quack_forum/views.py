@@ -81,10 +81,10 @@ def CryptoComment(request):
 
 def CryptoForum(request):
     #get visibility
-    if DisplayModel.objects.get(pk = 1):
-        visible = DisplayModel.objects.get(pk = 1).date<= datetime.date.today()
+    if DisplayModel.objects.filter(title = "Kryptokváky").first():
+        visible = DisplayModel.objects.get(title = "Kryptokváky").date<= datetime.date.today()
     else:
-        visible = false
+        visible = True
     today =  datetime.date.today()
     error_flag = ""
 

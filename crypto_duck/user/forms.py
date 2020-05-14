@@ -1,6 +1,5 @@
 from django import forms
-from django.contrib.auth.models import User
-from .models import UserProfile
+from .models import UserProfile, MyUser
 
 class UserProfileForm (forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput(), label = 'Heslo')
@@ -8,7 +7,7 @@ class UserProfileForm (forms.ModelForm):
     password_check = forms.CharField(widget = forms.PasswordInput(), label = 'Heslo znovu')
 
     class Meta():
-        model = User
+        model = MyUser
         fields = ('username','email','password','password_check')
         help_texts = {
                     'username': None,
