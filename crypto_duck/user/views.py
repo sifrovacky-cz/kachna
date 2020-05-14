@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .forms import UserProfileForm, UserParticipantsForm
+from .forms import UserProfileForm, UserParticipantsForm, UserUpdateForm
 from django.urls import reverse
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth import authenticate, login, logout
@@ -104,29 +104,40 @@ def update_page(request):
     error_flag = ''
     participants_model = UserProfile.objects.get(user = request.user)
     if request.method == 'POST':
-        user_form = UserProfileForm(data=request.POST, instance=request.user)
+        user_form = UserUpdateForm(data=request.POST, instance=request.user)
         participants_form = UserParticipantsForm(data=request.POST, instance = participants_model)
 
         #profile validation
         if user_form.is_valid():
-            if user_form.cleaned_data['password'] == user_form.cleaned_data['password_check']:
-                user = user_form.save()
-                user.set_password(user.password)
-                user.save()
+            user_password = user_form.cleaned_data['password']
+            user_password_check = user_form.cleaned_data['password_check']
+            if user_password:
+                if user_password == user_password_check:
+                    user = user_form.save()
+                    user.save()
 
-                participants = participants_form.save(commit = False)
-                participants.user = user
-                participants.save()
-                login(request, user)
-                error_flag = 'Vše proběhlo úspěšně!'
+                    participants = participants_form.save(commit = False)
+                    participants.user = user
+                    participants.save()
+
+                    error_flag = 'Vše proběhlo úspěšně!'
+                else:
+                    error_flag = 'Hesla se neshodují!'
             else:
-                error_flag = 'Hesla se neshodují!'
+                    user = user_form.save()
+                    user.save()
 
+                    participants = participants_form.save(commit = False)
+                    participants.user = user
+                    participants.save()
+                
+                    error_flag = 'Vše proběhlo úspěšně!'
         else:
             error_flag = 'Nastal problém během validace!'
 
+        login(request, user)
     else:
-        user_form = UserProfileForm(instance=request.user)
+        user_form = UserUpdateForm(instance=request.user)
         participants_form = UserParticipantsForm(instance=participants_model)
     return render(request,'user/profile_update.html',{'user_form': user_form,
                                                     'participants_form': participants_form,

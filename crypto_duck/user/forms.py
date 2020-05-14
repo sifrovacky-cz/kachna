@@ -29,3 +29,25 @@ class UserParticipantsForm(forms.ModelForm):
             'participant_three': '3. hráč',
             'participant_four': '4. hráč',
         }
+
+class UserUpdateForm(forms.ModelForm):
+    password = forms.CharField(widget=forms.PasswordInput(), label = 'Heslo',required= False)
+    email = forms.EmailField(required = True)
+    password_check = forms.CharField(widget = forms.PasswordInput(), label = 'Heslo znovu', required=False)
+    class Meta():
+        model = MyUser
+        fields = ('username','email','password','password_check')
+        labels = {
+            'username': 'Jméno týmu',
+            'email': 'Email',
+            #password and password_check were not working, labels were moved up
+        }
+
+    def save(self, commit = True):
+        user = super(UserUpdateForm, self).save(commit=False)
+        password = self.cleaned_data["password"]
+        if password:
+            user.set_password(password)
+        if commit:
+            user.save()
+        return user
