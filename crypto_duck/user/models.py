@@ -18,6 +18,9 @@ class MyUser(AbstractUser):
             'unique': _("Tento uživatel již existuje."),
         },
     )
+    class Meta:
+        verbose_name = "tým"
+        verbose_name_plural = "Týmy"
 
 #User profile model, one to one relation to User model
 #Note: User = team, participants = team members
@@ -30,6 +33,26 @@ class UserProfile (models.Model):
     participant_three = models.CharField(max_length=100,blank=True)
     participant_four = models.CharField(max_length=100,blank=True)
 
+    class Meta:
+        verbose_name = "soupiska"
+        verbose_name_plural = "Soupisky"
+
+    def __str__(self):
+        return self.user.username
+
+class UserInfo (models.Model):
+    user = models.OneToOneField(MyUser, on_delete = models.CASCADE)
+    account = models.CharField(max_length=50,blank=True)
+    variable_symbol = models.CharField(max_length=50,blank = True)
+
+    class Meta:
+        verbose_name = "platební údaj"
+        verbose_name_plural = "Platební údaje"
+
+    @classmethod
+    def create(self, user_info):
+        return self(user = user_info)
+        
     def __str__(self):
         return self.user.username
 

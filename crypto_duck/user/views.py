@@ -5,7 +5,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.views.generic.edit import UpdateView
-from .models import UserProfile,MyUser
+from .models import UserProfile,MyUser,UserInfo
 from index_app.models import DisplayModel
 import datetime
 
@@ -42,8 +42,10 @@ def registration(request):
 
                 participants = participants_form.save(commit = False)
                 participants.user = user
-
                 participants.save()
+
+                user_info = UserInfo.create(user)
+                user_info.save()
 
                 user_registered = True
                 login(request, user)
@@ -63,9 +65,7 @@ def registration(request):
                                                     'participants_form':participants_form,
                                                     'visible':visible})
 
-
 # User login
-
 def user_login(request):
     #get visibility
     if DisplayModel.objects.filter(title = "Účty").first():
@@ -92,7 +92,6 @@ def user_login(request):
 
     return render(request,"user/login.html",{'error_flag': error_flag,
                                             'visible':visible,})
-
 
 #only user who is loged in can log out!
 @login_required
@@ -132,3 +131,8 @@ def update_page(request):
     return render(request,'user/profile_update.html',{'user_form': user_form,
                                                     'participants_form': participants_form,
                                                     'error_flag': error_flag })
+
+@login_required
+def profile_page(request):
+    user_info_model = UserInfo.objects.get(user = request.user)
+    return render(request,'user/profile_page.html',{'info':user_info_model})
