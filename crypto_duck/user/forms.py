@@ -1,5 +1,6 @@
 from django import forms
 from .models import UserProfile, MyUser
+from django.contrib.auth.forms import UserChangeForm
 
 class UserProfileForm (forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput(), label = 'Heslo')
@@ -31,23 +32,28 @@ class UserParticipantsForm(forms.ModelForm):
         }
 
 class UserUpdateForm(forms.ModelForm):
-    password = forms.CharField(widget=forms.PasswordInput(), label = 'Heslo',required= False)
     email = forms.EmailField(required = True)
-    password_check = forms.CharField(widget = forms.PasswordInput(), label = 'Heslo znovu', required=False)
     class Meta():
         model = MyUser
-        fields = ('username','email','password','password_check')
+        fields = ('username','email')
         labels = {
             'username': 'Jméno týmu',
             'email': 'Email',
-            #password and password_check were not working, labels were moved up
         }
 
-    def save(self, commit = True):
-        user = super(UserUpdateForm, self).save(commit=False)
-        password = self.cleaned_data["password"]
-        if password:
-            user.set_password(password)
-        if commit:
-            user.save()
-        return user
+class PasswordUpdateForm(forms.ModelForm):
+    password = forms.CharField(widget=forms.PasswordInput(), label = 'Heslo')
+    password_check = forms.CharField(widget = forms.PasswordInput(), label = 'Heslo znovu')
+    class Meta():
+        model = MyUser
+        fields = ('password','password_check')
+
+class UserInfoForm(UserChangeForm):
+    password = None
+    class Meta:
+        model = MyUser
+        fields = ('username','email')
+        labels = {
+            'username': 'Jméno týmu',
+            'email': 'Email',
+        }

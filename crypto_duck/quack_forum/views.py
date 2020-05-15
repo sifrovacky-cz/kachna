@@ -85,6 +85,11 @@ def CryptoForum(request):
         visible = DisplayModel.objects.get(title = "Šifry").date<= datetime.date.today()
     else:
         visible = True
+
+    if DisplayModel.objects.filter(title = "Účty").first():
+        visible_page = DisplayModel.objects.get(title = "Účty").date<= datetime.date.today()
+    else:
+        visible_page = True
     today =  datetime.date.today()
     error_flag = ""
 
@@ -95,13 +100,14 @@ def CryptoForum(request):
         except:
             error_flag = "An error has occured :("
 
-    cryptoCommentList = CryptoQuack.objects.order_by('-publish_time')
+    cryptoCommentList = CryptoQuack.objects.order_by('author')
 
 
     return render(request,'quack_forum/ciphers_try.html',{'cryptoComentList':cryptoCommentList,
                                                     'today':today,
                                                     'error_flag':error_flag,
-                                                    'visible':visible
+                                                    'visible':visible,
+                                                    'visible_page':visible_page
                                                     })
 
 

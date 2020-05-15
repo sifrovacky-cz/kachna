@@ -4,17 +4,13 @@
 
 <div>
     <h1>Úprava profilu</h1>
-        {% if error_flag %}
-            <p>{{error_flag}}</p>
-        {% endif %}
 
             <form method="POST">
-                {% for field in user_form %}
+                {% for field in form %}
                     {{ field.label_tag }}
                     {{ field }}
                 {% endfor %}
-                {{ participants_form }}
-                {{ password_form }}
+                    {{profile_form}}
                 {% csrf_token %}
                 <input type="submit" value="Upravit">
             </form>

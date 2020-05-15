@@ -3,9 +3,11 @@
 {% block body_block %}
 
 <div>
-    <h3>Ciphers:</h3>
+    <h3>Šifry:</h3>
     <br>
-
+    {% if not visible_page %}
+    <p> Šifry se otevřou spolu s účty!</p>
+    {% else %}
     <p>{{ error_flag }}</p>
         {% if cryptoComentList %}
         <ul>
@@ -24,7 +26,7 @@
                     {% if comment.author == user %}
                     <form action = "{% url 'quack_forum:crypto_forum' %}" method = "POST">
                         {% csrf_token %}
-                        <li><button type = "submit" value = "{{comment.id}}" name = "id_value">Delete!</button></li>
+                        <li><button type = "submit" value = "{{comment.id}}" name = "id_value">Smaž šifru!</button></li>
                     </form>
                     {% endif %}
                 </ul>
@@ -35,9 +37,9 @@
             
         </ul>
         {% else %}
-        <p>NO CIPHERS</p>
+        <p>Žádné šifry zatím nebyly přidány!</p>
         {% endif %}
-    
+    {% endif %}
 </div>
 
 {% endblock %}

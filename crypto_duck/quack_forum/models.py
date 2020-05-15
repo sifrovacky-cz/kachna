@@ -17,7 +17,7 @@ class QuackForum(models.Model):
 
 
 class CryptoQuack(models.Model):
-    publish_time = models.DateField()
+    #publish_time = models.DateField()
     tag = models.CharField(max_length=100)
     cipher_unsolved = models.FileField(upload_to='crypto_quack_unsolved')
     cipher_solved = models.FileField(upload_to='crypto_quack_solved')
